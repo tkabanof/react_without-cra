@@ -1,14 +1,11 @@
 import React, { Component } from "react";
 
 import './App.css';
+import Demo from "./components/Demo";
 
 class App extends Component {
     render() {
-        return (
-            <div>
-                <h1>ХУЙ</h1>
-            </div>
-        );
+        return (<Demo />);
     }
 }
 

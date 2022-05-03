@@ -10,7 +10,7 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.js$/,
+                test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
                 use: {
                     loader: "babel-loader"
@@ -18,13 +18,34 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                use: ["style-loader", "css-loader"]
-            }
+                use: [
+                    "style-loader",
+                    {
+                        loader: "css-loader",
+                        options: {
+                            importLoaders: 1,
+                            modules: true,
+                        },
+                    },
+                ],
+                include: /\.module\.css$/,
+            },
+            {
+                test: /\.css$/,
+                use: ["style-loader", "css-loader"],
+                exclude: /\.module\.css$/,
+            },
         ]
     },
     plugins: [
         new HtmlWebpackPlugin({
             template: "./src/index.html"
         })
-    ]
+    ],
+    resolve: {
+        alias: {
+            components: path.resolve(__dirname, 'src/components'),
+        },
+        extensions: ['.js', '.jsx'],
+    },
 };
