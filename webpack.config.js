@@ -6,7 +6,8 @@ module.exports = {
     entry: "./src/index.js",
     output: {
         path: path.join(__dirname, "/dist"),
-        filename: "index_bundle.js"
+        filename: "index_bundle.js",
+        clean: true
     },
     module: {
         rules: [
@@ -50,7 +51,7 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: "./src/index.html"
         }),
-        new ESLintPlugin()
+        //new ESLintPlugin()
     ],
     resolve: {
         alias: {
